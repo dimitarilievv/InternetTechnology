@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Helpers";
+    var items = new string[] { "monday", "tuesday", "wednesday" };
+}
+
+<h2>Helpers</h2>
+
+@using (@Html.BeginForm("HelpersV", "Store", FormMethod.Post))
+{
+    <p>
+        TextArea<br />
+        @Html.TextArea("text", "hello <br/> world", new { @class = "form-control" })
+    </p>
+    <p>
+        TextBox<br />
+        @Html.TextArea("myTextBox", "This is value", new { @class = "form-control" })
+    </p>
+    <p>
+        Label<br />
+        @Html.Label("StudentName", "Student-Name")
+    </p>
+    <p>
+        DropDownList<br />
+        @Html.DropDownList("Day",
+        new SelectList(items),
+        "Choose day",
+        new { @class = "form-control" })
+    </p>
+    <p>
+        Hidden<br />
+        @Html.Hidden("StudentId", "123456")
+    </p>
+    <p>
+        Password<br />
+        @Html.Password("OnlinePassword")
+    </p>
+    <p>
+        RadioButton<br />
+        @Html.RadioButton("gender", "m") Men <br />
+        @Html.RadioButton("gender", "w") Women
+    </p>
+    <p>
+        CheckBox<br />
+        @Html.CheckBox("isNotWorkable", true) Is the day workable
+    </p>
+    <p>
+        ActionLink<br />
+        @Html.ActionLink("Home","Index","Home")
+    </p>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

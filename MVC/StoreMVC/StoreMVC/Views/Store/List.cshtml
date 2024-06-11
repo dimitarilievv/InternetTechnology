@@ -1,0 +1,22 @@
+﻿
+@using StoreMVC.Models
+@*@model IEnumerable<Album>*@
+@model StoreMVC.ViewModels.ArtistAlbumsViewModel
+@{
+    ViewBag.Title = "List";
+}
+
+@*<h2>List of albums of @ViewBag.Artist.Name, total:@Model.Count()</h2>*@
+<h2>List of albums of @Model.Artist.Name, total:@Model.Albums.Count()</h2>
+<ul>
+    @* @foreach (Album a in ViewBag.Albums as IEnumerable<Album>) *@
+    @*@foreach (dynamic a in ViewBag.Albums)
+        {
+            <li>@a.Title</li>
+        }
+    *@
+    @foreach (Album a in Model.Albums)
+    {
+        <li>@a.Title</li>
+    }
+</ul>

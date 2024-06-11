@@ -1,0 +1,13 @@
+﻿@model CoursesKolokviumska.Models.CourseStudents
+@{
+    ViewBag.Title = "AddStudent";
+}
+
+<h2>Add student to the course:@Model.course.Name</h2>
+@using (Html.BeginForm("AddStudent", "Courses"))
+{
+    @Html.DropDownListFor(m => m.StudentId, new SelectList(Model.students, "Id", "Name"));
+    @Html.HiddenFor(m => m.CourseId);
+    <button type="submit">Add</button>
+}
+

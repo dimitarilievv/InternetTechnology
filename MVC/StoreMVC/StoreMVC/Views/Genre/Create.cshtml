@@ -1,0 +1,19 @@
+﻿@model StoreMVC.Models.Genre
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create new genre</h2>
+
+@using (Html.BeginForm("CreateNew", "Genre"))
+{
+  /*  @Html.LabelFor(m => m.GenreId)
+    @Html.TextBoxFor(m => m.GenreId)*/
+
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name)
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+

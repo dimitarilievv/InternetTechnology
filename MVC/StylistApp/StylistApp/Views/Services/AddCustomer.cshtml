@@ -1,0 +1,12 @@
+﻿@model StylistApp.Models.ServiceCustomers
+@{
+    ViewBag.Title = "AddCustomer";
+}
+
+<h2>Add Customer</h2>
+@using(Html.BeginForm("AddCustomer", "Services")){
+     @Html.DropDownListFor(m => m.CustomerId, new SelectList(Model.Customers, "CustomerId", "FirstName"));
+     @Html.HiddenFor(m => m.ServiceId);
+    <button type="submit" class="btn btn-default">Add</button>
+}
+

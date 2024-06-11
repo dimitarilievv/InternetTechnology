@@ -1,0 +1,107 @@
+﻿@model IEnumerable<StylistApp.Models.Service>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="tableService" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stylist.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stylist.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stylist.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stylist.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <img src="@item.ImageUrl" style="max-width:200px" />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ServiceId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ServiceId }) |
+                    <button data-service-id="@item.ServiceId" class="btn-link js-delete">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $("#tableService").DataTable();
+
+            // Use event delegation to attach the click event handler
+            $("#tableService").on("click", ".js-delete", function () {
+                var button = $(this);
+                var serviceId = button.attr("data-service-id");
+
+
+
+                bootbox.confirm("Dali sakas da izbrisis?", function (result) {
+                    if (result) {
+
+
+                        $.ajax({
+                            url: "/Services/Delete/" +serviceId,
+                            method: "GET",
+                            success: function () {
+
+                                table.row(button.parents("tr")).remove().draw();
+                    },
+                    error: function (err) {
+
+                        console.log(err);
+                    }
+                });
+            } else {
+                console.log("Deletion canceled for movieId: " + movieId);
+            }
+                    });
+                });
+            });
+    </script>
+} 

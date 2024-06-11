@@ -1,0 +1,44 @@
+﻿@model IEnumerable<LV3.Models.Patient>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientGender)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.PatientName, "Details/" + item.PatientId, "Patients")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientGender)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PatientId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PatientId })
+        </td>
+    </tr>
+}
+
+</table>

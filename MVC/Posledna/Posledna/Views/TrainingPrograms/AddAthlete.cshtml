@@ -1,0 +1,12 @@
+﻿@model Posledna.Models.TrainingProgramAthletes       
+@{
+    ViewBag.Title = "AddAthlete";
+}
+
+<h2>AddAthlete</h2>
+@using (Html.BeginForm("AddAthlete", "TrainingPrograms"))
+{
+    @Html.DropDownListFor(m => m.AthleteId, new SelectList(Model.Athletes, "AthleteId", "Name"));
+    @Html.HiddenFor(m => m.TrainingProgramId);
+    <button type="submit">Add</button>
+}

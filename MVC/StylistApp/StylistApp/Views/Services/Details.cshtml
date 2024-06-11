@@ -1,0 +1,65 @@
+﻿@model StylistApp.Models.Service
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Stylist.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stylist.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            <img src="@Model.ImageUrl" style="max-width:150px" />
+        </dt>
+
+    </dl>
+    <div>
+        <strong>Customers for this service:</strong>
+        <ul>
+            @foreach (var item in Model.Customers)
+            {
+                <li><a href="/Customers/Details/@item.CustomerId">@item.FirstName</a></li>
+            }
+        </ul>
+        <div />
+
+    </div>
+    <p>
+        @Html.ActionLink("AddCustomer", "AddCustomer", new { id = Model.ServiceId }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

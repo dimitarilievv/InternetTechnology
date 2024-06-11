@@ -1,0 +1,13 @@
+﻿@model LibraryApplication.Models.MemberBooks
+@{
+    ViewBag.Title = "AddBook";
+}
+
+<h2>Add book to the member:@Model.Member.Name</h2>
+
+@using(Html.BeginForm("AddBook", "Members"))
+{
+    @Html.DropDownListFor(m => m.BookId, new SelectList(Model.Books, "Id", "Title"));
+    @Html.HiddenFor(m => m.MemberId);
+    <button type="submit" class="btn btn-default">Add</button>
+}

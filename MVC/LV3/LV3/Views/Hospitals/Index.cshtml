@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LV3.Models.Hospital>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HospitalName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HospitalAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HospitalImageURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HospitalName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HospitalAddress)
+        </td>
+        <td>
+            <img src="@item.HospitalImageURL" style="max-width:100px" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HospitalId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HospitalId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HospitalId })
+        </td>
+    </tr>
+}
+
+</table>
